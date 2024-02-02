@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Absen</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 20px;
+    }
+  </style>
+  
+</head>
+<body>
+  <h1>https://bit.ly/pptadonisjs</h1>
+  
+
+  <div >
+    <h3> Absen</h3>
+    <form id="absen-form" action="{{ route('absen.update',{id:absen?.id}) }}" method="POST">
+      <div style="margin-bottom: 10px">
+          <label for="nis">NIS:</label>
+          <input type="text" id="nis" name="nis" value="{{absen?.nis}}" required />
+        </div>
+      <div style="margin-bottom: 10px">
+          <label for="nama">Nama:</label>
+          <input type="text" id="nama" name="nama" value="{{absen?.nama}}" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="Kelas">Kelas</label>
+          <input type="text" id="Kelas" name="kelas" value="{{absen?.kelas}}" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="NoAbsen">No Absen</label>
+          <input type="number" id="NoAbsen" name="noabsen" value="{{absen?.noAbsen}}" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="Alpha">Alpha</label>
+          <input type="number" id="Alpha" name="alpha" value="{{absen?.alpha}}" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="Izin">Izin</label>
+          <input type="number" id="Izin" name="izin" value="{{absen?.izin}}" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="Sakit">Sakit</label>
+          <input type="number" id="Sakit" name="sakit" value="{{absen?.sakit}}" required />
+        </div>  
+      <button type="submit" style="margin-bottom: 10px">Edit Data Absen</button>
+    </form>
+   
+  </div>
+  
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script>document.addEventListener("DOMContentLoaded", function () {
+  const absenForm = document.getElementById("kelas-form");
+  const absenModal = document.getElementById("kelasModal");
+  const overlay = document.getElementById("overlay");
+
+  // kelasForm.addEventListener("submit", function (event) {
+  //   event.preventDefault();
+
+  //   closeModal();
+  // });
+
+  window.openModal = function () {
+    absenModal.style.display = "block";
+    overlay.style.display = "block";
+  };
+
+  window.closeModal = function () {
+    absenModal.style.display = "none";
+    overlay.style.display = "none";
+    absenForm.reset();
+  };
+});</script>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

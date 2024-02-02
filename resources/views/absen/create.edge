@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Kelas - Create</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Data Absen</h2>
+
+    <button onclick="openModal()">Tambah Data Absen</button>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="modal" id="absenModal">
+      <h3>Tambah Kelas</h3>
+      <form id="kelas-form">
+        <label for="nis">NIS:</label>
+        <input type="text" id="nis" name="nis" required />
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" required />
+        <label for="Kelas">Kelas</label>
+        <input type="text" id="Kelas" name="kelas" required />
+        <label for="NoAbsen">No Absen</label>
+        <input type="number" id="NoAbsen" name="noabsen" required />
+        <label for="Alpha">Alpha</label>
+        <input type="number" id="Alpha" name="alpha" required />
+        <label for="Izin">Izin</label>
+        <input type="number" id="Izin" name="izin" required />
+        <label for="Sakit">Sakit</label>
+        <input type="number" id="Sakit" name="sakit" required />
+        <button type="submit">Tambah Data Absen</button>
+      </form>
+      <button onclick="closeModal()">Tutup</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const absenForm = document.getElementById("absen-form");
+        const absenModal = document.getElementById("absenModal");
+        const overlay = document.getElementById("overlay");
+
+        absenForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const nis = document.getElementById("nis").value;
+          const nama = document.getElementById("nama").value;
+          const kelas = document.getElementById("kelas").value;
+          const noAbsen = document.getElementById("noAbsen").value;
+          const alpha = document.getElementById("alpha").value;
+          const izin = document.getElementById("izin").value;
+          const sakit = document.getElementById("sakit").value;
+
+          const newAbesen = {
+            nis: nis,
+            nama: nama,
+            kelas: kelas,
+            noAbsen: noAbsen,
+            alpha: alpha,
+            izin: izin,
+            sakit: sakit,
+          };
+
+          // Lakukan apa yang perlu dilakukan dengan data kelas
+          console.log(newAbesen);
+
+          closeModal();
+        });
+
+        window.openModal = function () {
+          kelasModal.style.display = "block";
+          overlay.style.display = "block";
+        };
+
+        window.closeModal = function () {
+          absenModal.style.display = "none";
+          overlay.style.display = "none";
+          absenForm.reset();
+        };
+      });
+    </script>
+  </body>
+</html>

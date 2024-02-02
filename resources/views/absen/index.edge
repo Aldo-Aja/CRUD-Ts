@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Absen - CRUD</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Data Absen {{ nama_admin }}</h2>
+
+    <button onclick="openModal()">Tambah Data Absen</button>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="modal" id="absenModal">
+      <h3>Tambah Kehadiran</h3>
+      <form id="absen-form" action="{{ route('absen.store') }}" method="POST">
+        <div style="margin-bottom: 10px">
+          <label for="nis">NIS:</label>
+          <input type="text" id="nis" name="nis" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="nama">Nama:</label>
+          <input type="text" id="nama" name="nama" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="Kelas">Kelas</label>
+          <input type="text" id="Kelas" name="kelas" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="NoAbsen">No Absen</label>
+          <input type="number" id="NoAbsen" name="noabsen" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="Alpha">Alpha</label>
+          <input type="number" id="Alpha" name="alpha" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="Izin">Izin</label>
+          <input type="number" id="Izin" name="izin" required />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="Sakit">Sakit</label>
+          <input type="number" id="Sakit" name="sakit" required />
+        </div>
+        <button type="submit" style="margin-bottom: 10px">
+          Tambah Data Absen
+        </button>
+      </form>
+      <button onclick="closeModal()">Tutup</button>
+    </div>
+
+    <table id="absen-table">
+      <thead>
+        <tr>
+          <th style="text-align: center">No</th>
+          <th style="text-align: center">NIS</th>
+          <th style="text-align: center">Nama</th>
+          <th style="text-align: center">Kelas</th>
+          <th style="text-align: center">No Absen</th>
+          <th style="text-align: center">Alpha</th>
+          <th style="text-align: center">Izin</th>
+          <th style="text-align: center">Sakit</th>
+          <th style="text-align: center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if(absen[0]?.id) 
+        @each(data in absen)
+        <tr>
+          <td>{{ data?.id }}</td>
+          <td>{{ data?.nis }}</td>
+          <td>{{ data?.nama }}</td>
+          <td>{{ data?.kelas }}</td>
+          <td>{{ data?.noAbsen }}</td>
+          <td>{{ data?.alpha }}</td>
+          <td>{{ data?.izin }}</td>
+          <td>{{ data?.sakit }}</td>
+          <td>
+            <a href="{{ route('absen.detail', { id: data.id }) }}">Detail </a>
+            <!-- <a href="{{ route('kelas.update', { id: data.id }) }}">Edit</a> -->
+            <a href="{{ route('absen.delete', { id: data.id }) }}">Delete</a>
+          </td>
+        </tr>
+        @endeach 
+        @endif
+      </tbody>
+    </table>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const absenForm = document.getElementById("absen-form");
+        const absenModal = document.getElementById("absenModal");
+        const overlay = document.getElementById("overlay");
+
+        // kelasForm.addEventListener("submit", function (event) {
+        //   event.preventDefault();
+
+        //   closeModal();
+        // });
+
+        window.openModal = function () {
+          absenModal.style.display = "block";
+          overlay.style.display = "block";
+        };
+
+        window.closeModal = function () {
+          absenModal.style.display = "none";
+          overlay.style.display = "none";
+          absenForm.reset();
+        };
+      });
+    </script>
+  </body>
+</html>
